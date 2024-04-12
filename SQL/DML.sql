@@ -26,6 +26,15 @@ INSERT INTO RoomBooking(RoomID, MemberID, BookingDay, StartTime, EndTime)
 VALUES ('1','1', 'Monday', '09:00:00', '10:00:00'),
        ('2','2', 'Friday', '13:00:00', '14:00:00');  
 
+-- Insert into Equipments Table
+INSERT INTO Equipment(EquipmentName, Status)
+
+
+-- Insert into Classes Table
+INSERT INTO Class(ClassName, Days, StartTime, EndTime)
+
+
+
 -- Insert into Billings Table
 INSERT INTO Billing(MemberID, Amount, CardNumber, CardType)
 VALUES ('1','60', '1234', 'Debit'),
