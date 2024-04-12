@@ -11,7 +11,7 @@
 pip install -r requirements.txt
 
 #### Created a new database and user in PostgreSQL with these details
-user: user1
-password: 1234
-port: 5432
-database name: Comp3005Project
+user: user1 <br>
+password: 1234 <br>
+port: 5432 <br>
+database name: Comp3005Project <br>
