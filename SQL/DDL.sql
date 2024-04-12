@@ -25,9 +25,11 @@ CREATE TABLE Trainer (
 );
 
 CREATE TABLE ManagesBilling (
-    member_id SERIAL PRIMARY KEY,
+    transaction_id SERIAL PRIMARY KEY,
     admin_id INT,
-    payment_info VARCHAR(255) NOT NULL,
+    amount FLOAT,
+    card_type VARCHAR(255) NOT NULL,
+    card_num VARCHAR(255) NOT NULL,
     FOREIGN KEY (admin_id) REFERENCES AdministrativeStaff(id)
 );
 
