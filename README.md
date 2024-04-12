@@ -10,3 +10,8 @@
 #### Use the following command to get the needed dependencies:
 pip install -r requirements.txt
 
+#### Created a new database and user in PostgreSQL with these details
+user: user1
+password: 1234
+port: 5432
+database name: Comp3005Project
