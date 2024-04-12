@@ -6,7 +6,7 @@ VALUES ('Robert James', 'Robjames@gmail.com', '234567', '193', '230', '200'),
        ('David Owens', 'Monday, Friday', '177288', '186', '150', '180');  
 
 -- Insert into Trainers Table
-INSERT INTO Trainer(FullName, Days/WeekAvailable, StartTime, EndTime)
+INSERT INTO Trainer(FullName, DaysAvailable, StartTime, EndTime)
 VALUES ('Bob Jones', 'Tuesday, Wednesday, Thursday', '09:00:00', '17:00:00'),
        ('Mike Jordan', 'Monday, Friday', '09:00:00', '17:00:00');
 
