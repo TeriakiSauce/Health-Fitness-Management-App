@@ -1,3 +1,5 @@
+-- COMP 3005 Project V2 Group 95 DDL
+
 CREATE TABLE Member (
     member_id SERIAL PRIMARY KEY,
     schedule VARCHAR(255) NOT NULL,
