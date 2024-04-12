@@ -1,17 +1,18 @@
 import psycopg2
 
 # Database connection
-#conct = psycopg2.connect(host="", user="", password ="", port=, dbname="")
-#cursr = conct.cursor()
+conct = psycopg2.connect(host="localhost", user="user1", password ="1234", port=5432, dbname="Comp3005Project")
+cursr = conct.cursor()
 
-    # Function that does operations
-    #def sampleFunction():
-        #"""
-        #Peforms Operation
-        #"""
-        #cursr.execute("""""")
-        #for row in cursr.fetchall():
-        #    print(row)
+# Function that does operations
+def sampleFunction():
+    """
+    #Peforms Operation
+    """
+    cursr.execute("""""")
+    for row in cursr.fetchall():
+        print(row)
+        
 print("Welcome to a Database Management System")
 commands=""
 print("Enter a number corresponding to your role")
@@ -54,6 +55,6 @@ while(commands!= "q"):
             q (to quit)\n""")
             commands = input("Pick an operation:")
       
-#conct.commit()
-#cursr.close()
-#conct.close()
+conct.commit()
+cursr.close()
+conct.close()
