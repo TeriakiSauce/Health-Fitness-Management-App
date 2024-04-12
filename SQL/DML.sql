@@ -12,7 +12,9 @@ VALUES ('Bob Jones', 'Tuesday, Wednesday, Thursday', '09:00:00', '17:00:00'),
 
 
 -- Insert into AdministrativeStaff Table
-INSERT INTO AdministrativeStaff()
+INSERT INTO AdministrativeStaff(FullName, Email)
+VALUES ('Marshall Bean', 'admin1@gmail.com'),
+       ('Cena John', 'admin2@gmail.com');
 
 
 -- Insert into Sessions Table
@@ -27,9 +29,9 @@ VALUES ('1','1', 'Monday', '09:00:00', '10:00:00'),
        ('2','2', 'Friday', '13:00:00', '14:00:00');  
 
 -- Insert into Equipments Table
-INSERT INTO Equipment(EquipmentName, MaintenanceStatus)
-VALUES ('Barbell', 'Good'),
-       ('Skipping Rope', 'Broken');
+INSERT INTO Equipment(EquipmentName, MaintenanceStatus, Availability)
+VALUES ('Barbell', 'Good', 'Available'),
+       ('Skipping Rope', 'Broken', 'Not Available');
 
 
 -- Insert into Classes Table
