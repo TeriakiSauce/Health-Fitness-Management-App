@@ -59,7 +59,7 @@ VALUES ('Barbell', 'Excellent', 'Available'),
 
 
 -- Insert into Classes Table
-INSERT INTO Class(ClassName, Days, StartTime, EndTime)
+INSERT INTO Class(ClassName, ClassDay, StartTime, EndTime)
 VALUES ('Yoga', 'Tuesday', '09:00:00', '10:00:00'),
        ('Meditation', 'Saturday', '11:00:00', '12:00:00'),
        ('Pilates', 'Thursday', '17:00:00', '18:00:00'),
