@@ -27,13 +27,16 @@ VALUES ('1','1', 'Monday', '09:00:00', '10:00:00'),
        ('2','2', 'Friday', '13:00:00', '14:00:00');  
 
 -- Insert into Equipments Table
-INSERT INTO Equipment(EquipmentName, Status)
+INSERT INTO Equipment(EquipmentName, MaintenanceStatus)
+VALUES ('Barbell', 'Good'),
+       ('Skipping Rope', 'Broken');
 
 
 -- Insert into Classes Table
 INSERT INTO Class(ClassName, Days, StartTime, EndTime)
-
-
+VALUES ('Yoga', 'Tuesday', '09:00:00', '10:00:00'),
+       ('Meditation', 'Saturday', '11:00:00', '12:00:00');
+       
 
 -- Insert into Billings Table
 INSERT INTO Billing(MemberID, Amount, CardNumber, CardType)
