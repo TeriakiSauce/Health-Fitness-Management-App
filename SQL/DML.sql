@@ -50,7 +50,7 @@ VALUES ('1', '1', 'Monday', '09:00:00', '10:00:00'),
 
 -- Insert into Equipments Table
 INSERT INTO Equipment(EquipmentName, MaintenanceStatus, Availability)
-VALUES ('Barbell', 'Good', 'Available'),
+VALUES ('Barbell', 'Excellent', 'Available'),
        ('Skipping Rope', 'Broken', 'Not Available'),
        ('Dumbbell Set', 'Good', 'Available'),
        ('Exercise Ball', 'Good', 'Available'),
@@ -59,7 +59,7 @@ VALUES ('Barbell', 'Good', 'Available'),
 
 
 -- Insert into Classes Table
-INSERT INTO Class(ClassName, Days, StartTime, EndTime)
+INSERT INTO Class(ClassName, ClassDay, StartTime, EndTime)
 VALUES ('Yoga', 'Tuesday', '09:00:00', '10:00:00'),
        ('Meditation', 'Saturday', '11:00:00', '12:00:00'),
        ('Pilates', 'Thursday', '17:00:00', '18:00:00'),
