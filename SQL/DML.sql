@@ -50,7 +50,7 @@ VALUES ('1', '1', 'Monday', '09:00:00', '10:00:00'),
 
 -- Insert into Equipments Table
 INSERT INTO Equipment(EquipmentName, MaintenanceStatus, Availability)
-VALUES ('Barbell', 'Good', 'Available'),
+VALUES ('Barbell', 'Excellent', 'Available'),
        ('Skipping Rope', 'Broken', 'Not Available'),
        ('Dumbbell Set', 'Good', 'Available'),
        ('Exercise Ball', 'Good', 'Available'),
