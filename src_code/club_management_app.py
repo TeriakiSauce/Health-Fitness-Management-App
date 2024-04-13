@@ -135,7 +135,34 @@ def updateEquipmentStatus():
     for row in cursr.fetchall():
         print(row)
     print("\n")
+
+# Class Schedule Management
+def viewClasses():
+    """
+    # Views all classes
+    """
+    print("All classes")
+    cursr.execute("""SELECT * FROM Class""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
     
+def manageClasSchedules():
+    """
+    # Edit a room
+    """
+    id = input("Type the ID of the Class you would like to edit")
+    day = input("What day would you like to update the class to?")
+    startTime = input("What time would you like to update the class to start?")
+    endTime = input("What time would you like to update the class to end?")
+    parameters = (day, startTime, endTime, id)
+    
+    statement = """UPDATE Class SET ClassDay %s, StartTime = %s, EndTime = %s WHERE RoomID = %s"""
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
 def adminOperations(command):
     if (command!= "q"):
             print("""Possible Admin Staff operations are:\n
@@ -179,7 +206,12 @@ def adminOperations(command):
                     1. View Class Schedule\n
                     2. Update Class Schedule\n
                     q (to quit)\n""")
-            
+
+                    if (command == "1"):
+                        viewClasses()
+                    elif (command == "2"):
+                        manageClasSchedules()
+                    
             # Choosing a billing operation
             else:
                 if (command!= "q"):
