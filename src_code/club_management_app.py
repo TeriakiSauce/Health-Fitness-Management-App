@@ -4,6 +4,7 @@ import psycopg2
 conct = psycopg2.connect(host="localhost", user="user1", password ="1234", port=5432, dbname="Comp3005Project")
 cursr = conct.cursor()
 
+# All Member Operations
 # Update Profile Info
 def updateProfileInfo():
     """
@@ -56,7 +57,8 @@ def memberOperations(command):
                     1. \n
                     2. \n
                     q (to quit)\n""")
-    
+
+# All Trainer Operations    
 def trainerOperations(command):
     if (command!= "q"):
             print("""Possible Trainer operations are:\n
@@ -80,7 +82,20 @@ def trainerOperations(command):
                     1. \n
                     2. \n
                     q (to quit)\n""")
-    
+
+# All Admin Staff Operations
+# Room Viewing
+def viewRooms():
+    """
+    # Views all availables rooms
+    """
+    print("Current profile info")
+    cursr.execute("""SELECT RoomID FROM RoomBooking
+                WHERE StartTime IS NULL""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+        
 def adminOperations(command):
     if (command!= "q"):
             print("""Possible Admin Staff operations are:\n
@@ -98,33 +113,36 @@ def adminOperations(command):
                     1. View Available Rooms\n
                     2. Book a new Room\n
                     q (to quit)\n""")
+                    
+                    if (command == "1"):
+                        viewRooms()
             
             # Choosing an equipment operation
             elif (command == "2"):
                 if (command!= "q"):
                     print("""Possible Equipment Maintenance operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Equipment Status\n
+                    2. Update Equipment Status\n
                     q (to quit)\n""")
             
             # Choosing a class operation
             elif (command == "3"):                
                 if (command!= "q"):
                     print("""Possible Class Schedule operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Class Schedule\n
+                    2. Update Class Schedule\n
                     q (to quit)\n""")
             
             # Choosing a billing operation
             else:
                 if (command!= "q"):
                     print("""Possible Billing operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Billing Info\n
+                    2. Process new Payment\n
                     q (to quit)\n""")
 
-def main():
-            
+# Main App Logic
+def main():         
     print("Welcome to the Health and Fitness Management System!")
     command=""
 
