@@ -20,11 +20,12 @@ def memberOperations(command):
             if (command == "1"):
                 if (command!= "q"):
                     print("""Possible User registration operations are:\n
-                    1. Register for Training Session
-                    2. Register for Room
+                    1. Register User\n
                     q (to quit)\n""")
                       
-                    command = input("Pick an operation:")    
+                    command = input("Pick an operation:")
+                    if (command == "1"):
+                        registerMember()
                     
             # Choosing a profile operation
             elif (command == "2"):                
@@ -55,11 +56,34 @@ def memberOperations(command):
             else:                
                 if (command!= "q"):
                     print("""Possible Schedule operations are:\n
-                    1. \n
-                    2. \n
+                    1.Register for Training Session\n
+                    2. Register for Room\n
                     q (to quit)\n""")
 
                     command = input("Pick an operation:")
+                    if (command == "1"):
+                        registerForTrainingSession()
+                    elif (command == "2"):
+                        registerForRoom()
+
+# Member Registrationo
+def registerMember():
+    """
+    # Creates profile with provided input
+    """
+    fullName = input("What is your Full Name?")
+    email = input("What is your email address?")
+    phone = input("What is your phone number?")
+    height = input("What is your height?")
+    weight = input("What is your weight?")
+    weightGoal = input("What is your weight goal?")
+    parameters = (fullName, email, phone, height, weight, weightGoal)
+    statement = """INSERT INTO Member (FullName, Email, Phone, Height, Weight, WeightGoal) VALUES (%s, %s, %s, %s, %s, %s);"""
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
 
 #Member Training Session Registration
 def registerForTrainingSession():
