@@ -33,7 +33,9 @@ def memberOperations(command):
                     1. \n
                     2. \n
                     q (to quit)\n""")
-            
+                      
+                    command = input("Pick an operation:")    
+                    
             # Choosing a profile operation
             elif (command == "2"):                
                 if (command!= "q"):
@@ -41,7 +43,9 @@ def memberOperations(command):
                     1. \n
                     2. \n
                     q (to quit)\n""")
-    
+
+                    command = input("Pick an operation:")
+                    
             # Choosing a dashboard operation
             elif (command == "3"):                
                 if (command!= "q"):
@@ -49,7 +53,9 @@ def memberOperations(command):
                     1. \n
                     2. \n
                     q (to quit)\n""")
-            
+
+                    command = input("Pick an operation:")
+                    
             # Choosing a schedule operation
             else:                
                 if (command!= "q"):
@@ -58,6 +64,8 @@ def memberOperations(command):
                     2. \n
                     q (to quit)\n""")
 
+                    command = input("Pick an operation:")
+                    
 # All Trainer Operations
 # Schedule Management
 def viewSchedule(name):
@@ -112,12 +120,13 @@ def trainerOperations(command):
             
             # Choosing a schedule operation
             if (command == "1"):
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Schedule operations are:\n
                     1. View your current schedule\n
                     2. Update your schedule\n
                     q (to quit)\n""")
                     
+                    command = input("Pick an operation:")
                     if (command == "1"):
                         viewSchedule(name)
                     elif (command == "2"):
@@ -125,11 +134,12 @@ def trainerOperations(command):
             
             # Choosing a profile operation
             elif (command == "2"):                
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Profile operations are:\n
                     1. View the profile of a member\n
                     q (to quit)\n""")
                     
+                    command = input("Pick an operation:")
                     if (command == "1"):
                         viewMemberProfile()
 
@@ -252,12 +262,13 @@ def adminOperations(command):
 
             # Choosing a room booking operation
             if (command == "1"):
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Room Booking operations are:\n
                     1. View all Rooms\n
                     2. Edit Room Details\n
                     q (to quit)\n""")
                     
+                    command = input("Pick an operation:")
                     if (command == "1"):
                         viewRooms()
                     elif (command == "2"):
@@ -265,12 +276,13 @@ def adminOperations(command):
             
             # Choosing an equipment operation
             elif (command == "2"):
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Equipment Maintenance operations are:\n
                     1. View Equipment Status\n
                     2. Update Equipment Status\n
                     q (to quit)\n""")
                     
+                    command = input("Pick an operation:")
                     if (command == "1"):
                         viewEquipment()
                     elif (command == "2"):
@@ -278,12 +290,13 @@ def adminOperations(command):
             
             # Choosing a class operation
             elif (command == "3"):                
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Class Schedule operations are:\n
                     1. View Class Schedule\n
                     2. Update Class Schedule\n
                     q (to quit)\n""")
 
+                    command = input("Pick an operation:")
                     if (command == "1"):
                         viewClasses()
                     elif (command == "2"):
@@ -291,12 +304,13 @@ def adminOperations(command):
                     
             # Choosing a billing operation
             else:
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Billing operations are:\n
                     1. View all Transactions\n
                     2. Process new Payment\n
                     q (to quit)\n""")
-                        
+                    
+                    command = input("Pick an operation:")    
                     if (command == "1"):
                         viewTransactions()
                     elif (command == "2"):
