@@ -29,8 +29,8 @@ CREATE TABLE TrainingSession (
     EndTime VARCHAR(255) NOT NULL,
     MemberID INTEGER,
     TrainerID INTEGER, 
-    FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
-    FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID)
+    FOREIGN KEY (MemberID) REFERENCES Member(MemberID),
+    FOREIGN KEY (TrainerID) REFERENCES Trainer(TrainerID)
 );
 
 CREATE TABLE RoomBooking (
@@ -40,7 +40,7 @@ CREATE TABLE RoomBooking (
     EndTime VARCHAR(255) NOT NULL,
     MemberID INTEGER,
     AdminID INTEGER,
-    FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+    FOREIGN KEY (MemberID) REFERENCES Member(MemberID),
     FOREIGN KEY (AdminID) REFERENCES AdministrativeStaff(AdminID)
 );
 
@@ -66,6 +66,6 @@ CREATE TABLE Billing (
     CardType VARCHAR(255) NOT NULL,
     MemberID INTEGER,
     AdminID INTEGER,
-    FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+    FOREIGN KEY (MemberID) REFERENCES Member(MemberID),
     FOREIGN KEY (AdminID) REFERENCES AdministrativeStaff(AdminID)
 );
