@@ -6,7 +6,7 @@ CREATE TABLE Member (
     Height NUMERIC NOT NULL,
     Weight NUMERIC NOT NULL,
     WeightGoal NUMERIC NOT NULL,
-    WeightChange INT NOT NULL
+    WeightChange INTEGER NOT NULL
 );
 
 CREATE TABLE Trainer (
