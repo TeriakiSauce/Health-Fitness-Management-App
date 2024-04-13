@@ -5,7 +5,8 @@ CREATE TABLE Member (
     Phone VARCHAR(20) NOT NULL,
     Height NUMERIC NOT NULL,
     Weight NUMERIC NOT NULL,
-    WeightGoal NUMERIC NOT NULL
+    WeightGoal NUMERIC NOT NULL,
+    WeightChange NUMERIC NOT NULL
 );
 
 CREATE TABLE Trainer (
