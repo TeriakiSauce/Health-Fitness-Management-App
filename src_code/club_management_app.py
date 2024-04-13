@@ -58,7 +58,35 @@ def memberOperations(command):
                     2. \n
                     q (to quit)\n""")
 
-# All Trainer Operations    
+# All Trainer Operations
+# Schedule Management
+def viewSchedule(name):
+    """
+    # Views current schedule
+    """
+    print("Your Schedule")
+    parameters = (name, )
+    statement = ("""SELECT * FROM Trainer WHERE FullName = %s""")
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def updateSchedule(name):
+    """
+    # Update Trainer schedule
+    """
+    days = input("What days are you available?")
+    startTime = input("What time do you start?")
+    endTime = input("What time do you finish?")
+    parameters = (days, startTime, endTime, name)
+    
+    statement = """UPDATE Trainer SET DaysAvailable = %s, StartTime = %s, EndTime = %s WHERE FullName = %s"""
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+        
 def trainerOperations(command):
     if (command!= "q"):
             print("""Possible Trainer operations are:\n
@@ -66,21 +94,26 @@ def trainerOperations(command):
             2. Member Profile Viewing\n
             q (to quit)\n""")
             command = input("Pick an operation:")
+            name = input("What is your full name?")
             
             # Choosing a schedule operation
             if (command == "1"):
                 if (command!= "q"):
                     print("""Possible Schedule operations are:\n
-                    1. \n
-                    2. \n
+                    1. View your current schedule\n
+                    2. Update your schedule\n
                     q (to quit)\n""")
+                    
+                    if (command == "1"):
+                        viewSchedule(name)
+                    elif (command == "2"):
+                        updateSchedule(name)
             
             # Choosing a profile operation
             elif (command == "2"):                
                 if (command!= "q"):
                     print("""Possible Profile operations are:\n
-                    1. \n
-                    2. \n
+                    1. View the profile of a member\n
                     q (to quit)\n""")
 
 # All Admin Staff Operations
