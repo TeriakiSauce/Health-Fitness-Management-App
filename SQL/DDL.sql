@@ -24,11 +24,11 @@ CREATE TABLE AdministrativeStaff (
 
 CREATE TABLE TrainingSession (
     SessionID SERIAL PRIMARY KEY,
-    MemberID INTEGER REFERENCES Member(ID),
-    TrainerID INTEGER REFERENCES Trainer(ID),
     SessionDay VARCHAR(255) NOT NULL,
     StartTime VARCHAR(255) NOT NULL,
     EndTime VARCHAR(255) NOT NULL,
+    MemberID INTEGER,
+    TrainerID INTEGER, 
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
     FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID)
 );
@@ -38,6 +38,8 @@ CREATE TABLE RoomBooking (
     BookingDay VARCHAR(255) NOT NULL,
     StartTime VARCHAR(255) NOT NULL,
     EndTime VARCHAR(255) NOT NULL,
+    MemberID INTEGER,
+    AdminID INTEGER,
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
     FOREIGN KEY (AdminID) REFERENCES AdministrativeStaff(AdminID)
 );
@@ -58,9 +60,12 @@ CREATE TABLE Class (
 );
 
 CREATE TABLE Billing (
+    BillingID SERIAL PRIMARY KEY,
     Amount NUMERIC NOT NULL,
     CardNumber VARCHAR(255) NOT NULL,
     CardType VARCHAR(255) NOT NULL,
+    MemberID INTEGER,
+    AdminID INTEGER,
     FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
     FOREIGN KEY (AdminID) REFERENCES AdministrativeStaff(AdminID)
 );
