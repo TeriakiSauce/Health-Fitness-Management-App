@@ -28,7 +28,7 @@ VALUES ('Marshall Bean', 'admin1@gmail.com'),
        ('William Martinez', 'admin6@gmail.com');
 
 -- Insert into Sessions Table
-INSERT INTO TrainingSession(MemberID, TrainerID, SessionDay, StartTime, EndTime)
+INSERT INTO SessionBooking(MemberID, TrainerID, SessionDay, StartTime, EndTime)
 VALUES ('1', '1', 'Tuesday', '10:00:00', '11:00:00'),
        ('2', '4', 'Wednesday', '14:00:00', '15:00:00'),
        ('3', '3', 'Friday', '15:00:00', '16:00:00'),
