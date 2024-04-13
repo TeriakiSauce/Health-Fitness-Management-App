@@ -18,7 +18,7 @@ def memberOperations(command):
             
             # Choosing a user registration operation
             if (command == "1"):
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible User registration operations are:\n
                     1. Register User\n
                     q (to quit)\n""")
@@ -29,7 +29,7 @@ def memberOperations(command):
                     
             # Choosing a profile operation
             elif (command == "2"):                
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Profile operations are:\n
                     1. View Profile\n
                     2. Edit Profile \n
@@ -43,7 +43,7 @@ def memberOperations(command):
                     
             # Choosing a dashboard operation
             elif (command == "3"):                
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Dashboard operations are:\n
                     1. View Dashboard\n
                     q (to quit)\n""")
@@ -54,9 +54,9 @@ def memberOperations(command):
                     
             # Choosing a schedule operation
             else:                
-                if (command!= "q"):
+                while (command!= "q"):
                     print("""Possible Schedule operations are:\n
-                    1.Register for Training Session\n
+                    1. Register for Training Session\n
                     2. Register for Room\n
                     q (to quit)\n""")
 
@@ -78,20 +78,18 @@ def registerMember():
     weight = input("What is your weight?")
     weightGoal = input("What is your weight goal?")
     parameters = (fullName, email, phone, height, weight, weightGoal)
-    statement = """INSERT INTO Member (FullName, Email, Phone, Height, Weight, WeightGoal) VALUES (%s, %s, %s, %s, %s, %s);"""
+    statement = """INSERT INTO Member (FullName, Email, Phone, Height, Weight, WeightGoal, WeightChange) VALUES (%s, %s, %s, %s, %s, %s, 0);"""
     cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
     print("\n")
 
 
-#Member Training Session Registration
+# Member Training Session Registration
 def registerForTrainingSession():
     """
     # Registers a member for a training session
     """
-    id = input("What is the id of the Member")
-    trainerId = input("What is the name of the Trainer ?")
+    id = input("What is the id of the Member?")
+    trainerId = input("What is the id of the Trainer?")
     sessionDay = input("What day is the session?")
     sessionStartTime = input("What time does the session start?")
     sessionEndTime = input("What time does the session end?")
@@ -130,7 +128,6 @@ def registerForRoom():
     startTime = input("What time does the room start? ")
     endTime = input("What time does the room end? ")
     id = input("What is the id of the Member? ")
-    adminId = input("What is the id of the Admin Staff? ")
 
     # Query to check room availability
     roomAvailability = """
@@ -150,8 +147,8 @@ def registerForRoom():
         print("Room isn't availble during this time, please choose another time.")
     else:
         # Room is available so will register the member
-        parameters = (bookingDay, startTime, endTime, id, adminId)
-        statement = """INSERT INTO RoomBooking (BookingDay, StartTime, EndTime, MemberID, AdminID) VALUES (%s, %s, %s, %s, %s);"""
+        parameters = (bookingDay, startTime, endTime, id)
+        statement = """INSERT INTO RoomBooking (BookingDay, StartTime, EndTime, MemberID) VALUES (%s, %s, %s, %s, %s);"""
         cursr.execute(statement, parameters)
         print("Registration successful!")
 
@@ -182,8 +179,6 @@ def updateProfileInfo():
     parameters = (parameter, value, id)
     statement = """UPDATE Member SET %s = %s WHERE MemberID = %s"""
     cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
     print("\n")
 
 # Member Dashboard Display
@@ -200,36 +195,7 @@ def viewDashboard():
         print(row)
     print("\n")
 
-
 # All Trainer Operations
-# Schedule Management
-def viewSchedule(name):
-    """
-    # Views current schedule
-    """
-    print("Your Schedule")
-    parameters = (name, )
-    statement = ("""SELECT * FROM Trainer WHERE FullName = %s""")
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-def updateSchedule(name):
-    """
-    # Update Trainer schedule
-    """
-    days = input("What days are you available?")
-    startTime = input("What time do you start?")
-    endTime = input("What time do you finish?")
-    parameters = (days, startTime, endTime, name)
-    
-    statement = """UPDATE Trainer SET DaysAvailable = %s, StartTime = %s, EndTime = %s WHERE FullName = %s"""
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-
 
 def trainerOperations(command):
     if (command!= "q"):
@@ -238,10 +204,10 @@ def trainerOperations(command):
             2. Member Profile Viewing\n
             q (to quit)\n""")
             command = input("Pick an operation:")
-            name = input("What is your full name?")
             
             # Choosing a schedule operation
             if (command == "1"):
+                id = input("What is your ID number?")
                 while (command!= "q"):
                     print("""Possible Schedule operations are:\n
                     1. View your current schedule\n
@@ -250,9 +216,9 @@ def trainerOperations(command):
                     
                     command = input("Pick an operation:")
                     if (command == "1"):
-                        viewSchedule(name)
+                        viewSchedule(id)
                     elif (command == "2"):
-                        updateSchedule(name)
+                        updateSchedule(id)
             
             # Choosing a profile operation
             elif (command == "2"):                
@@ -264,113 +230,34 @@ def trainerOperations(command):
                     command = input("Pick an operation:")
                     if (command == "1"):
                         viewMemberProfile()
+                        
+# Schedule Management
+def viewSchedule(id):
+    """
+    # Views current schedule
+    """
+    print("Your Schedule")
+    parameters = (id, )
+    statement = ("""SELECT * FROM Trainer WHERE TrainerID = %s""")
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def updateSchedule(id):
+    """
+    # Update Trainer schedule
+    """
+    days = input("What days are you available?")
+    startTime = input("What time do you start?")
+    endTime = input("What time do you finish?")
+    parameters = (days, startTime, endTime, id)
+    
+    statement = """UPDATE Trainer SET DaysAvailable = %s, StartTime = %s, EndTime = %s WHERE TrainerID = %s"""
+    cursr.execute(statement, parameters)
+    print("\n")
 
 # All Admin Staff Operations
-# Room Management
-def viewRooms():
-    """
-    # Views all rooms
-    """
-    print("All Rooms")
-    cursr.execute("""SELECT * FROM RoomBooking""")
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-def manageRooms():
-    """
-    # Edit a room
-    """
-    id = input("Type the ID of the Room you would like to edit")
-    startTime = input("What time would you like to update the room to start?")
-    endTime = input("What time would you like to update the room to end?")
-    parameters = (startTime, endTime, id)
-    
-    statement = """UPDATE RoomBooking SET StartTime = %s, EndTime = %s WHERE RoomID = %s"""
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-# Equipment Management
-def viewEquipment():
-    """
-    # Views all Equipment
-    """
-    print("All Equipment")
-    cursr.execute("""SELECT * FROM Equipment""")
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-def updateEquipmentStatus():
-    """
-    # Edit the status of a piece of Equipment
-    """
-    id = input("Type the ID of the Equipment you would like to edit")
-    status = input("What is the status of the Equipment?")
-    availability = input("Is the equipment available to use?")
-    parameters = (status, availability, id)
-    
-    statement = """UPDATE Equipment SET MaintenanceStatus = %s, Availability = %s WHERE ID = %s"""
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-
-# Class Schedule Management
-def viewClasses():
-    """
-    # Views all classes
-    """
-    print("All classes")
-    cursr.execute("""SELECT * FROM Class""")
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-def manageClasSchedules():
-    """
-    # Edit a room
-    """
-    id = input("Type the ID of the Class you would like to edit")
-    day = input("What day would you like to update the class to?")
-    startTime = input("What time would you like to update the class to start?")
-    endTime = input("What time would you like to update the class to end?")
-    parameters = (day, startTime, endTime, id)
-    
-    statement = """UPDATE Class SET ClassDay %s, StartTime = %s, EndTime = %s WHERE RoomID = %s"""
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-# Billing Management
-def viewTransactions():
-    """
-    # Views all Transactions
-    """
-    print("All transactions")
-    cursr.execute("""SELECT * FROM Billing""")
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
-    
-def processNewTransaction():
-    """
-    # Add a new Transaction
-    """
-    id = input("What is the ID of the member making the transaction?")
-    amount = input("What is the amount of the transaction?")
-    cardNum = input("What is the card number?")
-    cardType = input("What is the card type?")
-    parameters = (id, amount, cardNum, cardType)
-    
-    statement = """INSERT INTO Billing (MemberID, Amount, CardNumber, CardType) VALUES (%s, %s, %s, %s);"""
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
 
 def adminOperations(command):
     if (command!= "q"):
@@ -437,6 +324,104 @@ def adminOperations(command):
                         viewTransactions()
                     elif (command == "2"):
                         processNewTransaction()
+
+# Room Management
+def viewRooms():
+    """
+    # Views all rooms
+    """
+    print("All Rooms")
+    cursr.execute("""SELECT * FROM RoomBooking""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def manageRooms():
+    """
+    # Edit a room
+    """
+    id = input("Type the ID of the Room you would like to edit")
+    startTime = input("What time would you like to update the room to start?")
+    endTime = input("What time would you like to update the room to end?")
+    parameters = (startTime, endTime, id)
+    
+    statement = """UPDATE RoomBooking SET StartTime = %s, EndTime = %s WHERE RoomID = %s"""
+    cursr.execute(statement, parameters)
+    print("\n")
+    
+# Equipment Management
+def viewEquipment():
+    """
+    # Views all Equipment
+    """
+    print("All Equipment")
+    cursr.execute("""SELECT * FROM Equipment""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def updateEquipmentStatus():
+    """
+    # Edit the status of a piece of Equipment
+    """
+    id = input("Type the ID of the Equipment you would like to edit")
+    status = input("What is the status of the Equipment?")
+    availability = input("Is the equipment available to use?")
+    parameters = (status, availability, id)
+    
+    statement = """UPDATE Equipment SET MaintenanceStatus = %s, Availability = %s WHERE EquipmentID = %s"""
+    cursr.execute(statement, parameters)
+    print("\n")
+
+# Class Schedule Management
+def viewClasses():
+    """
+    # Views all classes
+    """
+    print("All classes")
+    cursr.execute("""SELECT * FROM Class""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def manageClasSchedules():
+    """
+    # Edit a room
+    """
+    id = input("Type the ID of the Class you would like to edit")
+    classDay = input("What day would you like to update the class to?")
+    startTime = input("What time would you like to update the class to start?")
+    endTime = input("What time would you like to update the class to end?")
+    parameters = (startTime, endTime, classDay, id)
+    
+    statement = """UPDATE Class SET StartTime = %s, EndTime = %s, ClassDay = %s WHERE ClassID = %s"""
+    cursr.execute(statement, parameters)
+    print("\n")
+    
+# Billing Management
+def viewTransactions():
+    """
+    # Views all Transactions
+    """
+    print("All transactions")
+    cursr.execute("""SELECT * FROM Billing""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def processNewTransaction():
+    """
+    # Add a new Transaction
+    """
+    id = input("What is the ID of the member making the transaction?")
+    amount = input("What is the amount of the transaction?")
+    cardNum = input("What is the card number?")
+    cardType = input("What is the card type?")
+    parameters = (id, amount, cardNum, cardType)
+    
+    statement = """INSERT INTO Billing (MemberID, Amount, CardNumber, CardType) VALUES (%s, %s, %s, %s);"""
+    cursr.execute(statement, parameters)
+    print("\n")
 
 # Main App Logic
 def main():         
