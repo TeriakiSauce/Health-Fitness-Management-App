@@ -84,7 +84,7 @@ def trainerOperations(command):
                     q (to quit)\n""")
 
 # All Admin Staff Operations
-# Room Viewing
+# Room Management
 def viewRooms():
     """
     # Views all rooms
@@ -95,14 +95,13 @@ def viewRooms():
         print(row)
     print("\n")
     
-# Room Management
 def manageRooms():
     """
     # Edit a room
     """
     id = input("Type the ID of the Room you would like to edit")
     startTime = input("What time would you like to update the room to start?")
-    endTime = input("What time would like to update the room to end?")
+    endTime = input("What time would you like to update the room to end?")
     parameters = (startTime, endTime, id)
     
     statement = """UPDATE RoomBooking SET StartTime = %s, EndTime = %s WHERE RoomID = %s"""
@@ -110,7 +109,33 @@ def manageRooms():
     for row in cursr.fetchall():
         print(row)
     print("\n")
-        
+    
+# Equipment Management
+def viewEquipment():
+    """
+    # Views all Equipment
+    """
+    print("All Equipment")
+    cursr.execute("""SELECT * FROM Equipment""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def updateEquipmentStatus():
+    """
+    # Edit the status of a piece of Equipment
+    """
+    id = input("Type the ID of the Equipment you would like to edit")
+    status = input("What is the status of the Equipment?")
+    availability = input("Is the equipment available to use?")
+    parameters = (status, availability, id)
+    
+    statement = """UPDATE Equipment SET MaintenanceStatus = %s, Availability = %s WHERE ID = %s"""
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
 def adminOperations(command):
     if (command!= "q"):
             print("""Possible Admin Staff operations are:\n
@@ -141,6 +166,11 @@ def adminOperations(command):
                     1. View Equipment Status\n
                     2. Update Equipment Status\n
                     q (to quit)\n""")
+                    
+                    if (command == "1"):
+                        viewEquipment()
+                    elif (command == "2"):
+                        updateEquipmentStatus()
             
             # Choosing a class operation
             elif (command == "3"):                
