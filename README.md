@@ -12,7 +12,7 @@
 #### Use the following command to get the needed dependencies:
 pip install -r requirements.txt
 
-#### Created a new database and user in PostgreSQL with these details
+#### Created a new database and user in PostgreSQL with these details and the DDL and DML statemeents found in the SQL folder
 user: user1 <br>
 password: 1234 <br>
 port: 5432 <br>
