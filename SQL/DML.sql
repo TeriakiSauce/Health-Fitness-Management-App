@@ -37,13 +37,13 @@ VALUES ('1', '1', 'Tuesday', '10:00:00', '11:00:00'),
        ('2', '6', 'Friday', '16:00:00', '17:00:00');
 
 -- Insert into RoomBookings Table
-INSERT INTO RoomBooking(RoomID, MemberID, BookingDay, StartTime, EndTime)
-VALUES ('1', '1', 'Monday', '09:00:00', '10:00:00'),
-       ('2', '2', 'Friday', '13:00:00', '14:00:00'),
-       ('3', '3', 'Wednesday', '10:00:00', '11:00:00'),
-       ('1', '4', 'Monday', '13:00:00', '14:00:00'),
-       ('2', '5', 'Thursday', '14:00:00', '15:00:00'),
-       ('3', '6', 'Tuesday', '15:00:00', '16:00:00');
+INSERT INTO RoomBooking(MemberID, BookingDay, StartTime, EndTime)
+VALUES ('1', 'Monday', '09:00:00', '10:00:00'),
+       ('2', 'Friday', '13:00:00', '14:00:00'),
+       ('3', 'Wednesday', '10:00:00', '11:00:00'),
+       ('4', 'Monday', '13:00:00', '14:00:00'),
+       ('5', 'Thursday', '14:00:00', '15:00:00'),
+       ('6', 'Tuesday', '15:00:00', '16:00:00');
 
 -- Insert into Equipments Table
 INSERT INTO Equipment(EquipmentName, MaintenanceStatus, Availability)
