@@ -30,33 +30,61 @@ def memberOperations(command):
             if (command == "1"):
                 if (command!= "q"):
                     print("""Possible User registration operations are:\n
-                    1. \n
-                    2. \n
+                    1. Register for Training Session\n
+                    2. Register for Room\n
                     q (to quit)\n""")
-            
+
+                    if (command == "1"){
+                        viewUserRegistration();
+                    }else if (command == "2"){
+                    }
             # Choosing a profile operation
             elif (command == "2"):                
                 if (command!= "q"):
                     print("""Possible Profile operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Profile\n
+                    2. Update Profile\n
                     q (to quit)\n""")
+
+                    if(command == "1"):
+                        viewProfile()
     
             # Choosing a dashboard operation
             elif (command == "3"):                
                 if (command!= "q"):
                     print("""Possible Dashboard operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Dashboard\n
                     q (to quit)\n""")
             
+                    if(command == "1"):
+                        viewDashboard()
             # Choosing a schedule operation
             else:                
                 if (command!= "q"):
                     print("""Possible Schedule operations are:\n
-                    1. \n
-                    2. \n
+                    1. Schedule personal Training Session\n
+                    2. Schedule Group fitness Class\n
                     q (to quit)\n""")
+
+def viewUserRegistration():
+    print("All User Registrations")
+    cursr
+
+def viewProfile():
+    id = input("Type Your ID to view your profile")
+    statement = """SELECT * FROM Member WHERE ID = %s"""
+    cursr.execute(statement, id)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
+def viewDashboard():
+    id = input("Type Your ID to view your profile")
+    statement = """SELECT * FROM Member WHERE ID = %s"""
+    cursr.execute(statement, id)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
 
 # All Trainer Operations    
 def trainerOperations(command):
