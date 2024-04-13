@@ -1,13 +1,13 @@
 -- COMP 3005 Project V2 Group 95 DML
 
 -- Insert into Members Table
-INSERT INTO Member(FullName, Email, Phone, Height, Weight, WeightGoal)
-VALUES ('Robert James', 'Robjames@gmail.com', '234567', '193', '230', '200'),
-       ('David Owens', 'Monday, Friday', '177288', '186', '150', '180'),
-       ('Alice Smith', 'alice.smith@example.com', '987654', '170', '140', '130'),
-       ('John Doe', 'john.doe@example.com', '123456', '180', '190', '180'),
-       ('Emily Johnson', 'emily.johnson@example.com', '456789', '165', '150', '140'),
-       ('Michael Brown', 'michael.brown@example.com', '987654', '175', '160', '150');
+INSERT INTO Member(FullName, Email, Phone, Height, Weight, WeightGoal, WeightChange)
+VALUES ('Robert James', 'Robjames@gmail.com', '234567', '193', '230', '200', '10'),
+       ('David Owens', 'Monday, Friday', '177288', '186', '150', '180', '15'),
+       ('Alice Smith', 'alice.smith@example.com', '987654', '170', '140', '130', '-5'),
+       ('John Doe', 'john.doe@example.com', '123456', '180', '190', '160', '0'),
+       ('Emily Johnson', 'emily.johnson@example.com', '456789', '165', '150', '140', '5'),
+       ('Michael Brown', 'michael.brown@example.com', '987654', '175', '160', '150', '-8');
 
 -- Insert into Trainers Table
 INSERT INTO Trainer(FullName, DaysAvailable, StartTime, EndTime)
