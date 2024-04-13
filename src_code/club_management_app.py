@@ -118,7 +118,6 @@ def registerForTrainingSession():
         print("Registration successful!")
     print("\n")
 
-
 # Member Room Registration
 def registerForRoom():
     """
@@ -159,7 +158,7 @@ def viewMemberProfile():
     """
     # Views the profile of the specified Member
     """
-    id = input("What is the id of the Member")
+    id = input("What is the id of the Member?")
     print(id, "'s Profile")
     parameters = (id,)
     statement = ("""SELECT * FROM Member WHERE MemberID = %s""")
@@ -186,7 +185,7 @@ def viewDashboard():
     """
     # Views the dashboard of the specified Member
     """
-    id = input("What is the id of the Member")
+    id = input("What is the id of the Member?")
     print(id, "'s Dashboard")
     parameters = (id,)
     statement = ("""SELECT Height, Weight, WeightGoal, WeightChange FROM Member WHERE MemberID = %s""")
