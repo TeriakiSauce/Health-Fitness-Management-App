@@ -5,16 +5,6 @@ conct = psycopg2.connect(host="localhost", user="user1", password ="1234", port=
 cursr = conct.cursor()
 
 # All Member Operations
-# Update Profile Info
-def updateProfileInfo():
-    """
-    # Updates profile with provided input
-    """
-    print("Current profile info")
-    cursr.execute("""SELECT * FROM member""")
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
     
 def memberOperations(command):
     if (command!= "q"):
@@ -30,8 +20,8 @@ def memberOperations(command):
             if (command == "1"):
                 if (command!= "q"):
                     print("""Possible User registration operations are:\n
-                    1. \n
-                    2. \n
+                    1. Register for Training Session
+                    2. Register for Room
                     q (to quit)\n""")
                       
                     command = input("Pick an operation:")    
@@ -40,21 +30,26 @@ def memberOperations(command):
             elif (command == "2"):                
                 if (command!= "q"):
                     print("""Possible Profile operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Profile\n
+                    2. Edit Profile \n
                     q (to quit)\n""")
 
                     command = input("Pick an operation:")
+                    if (command == "1"):
+                        viewMemberProfile()
+                    elif (command == "2"):
+                        updateProfileInfo()
                     
             # Choosing a dashboard operation
             elif (command == "3"):                
                 if (command!= "q"):
                     print("""Possible Dashboard operations are:\n
-                    1. \n
-                    2. \n
+                    1. View Dashboard\n
                     q (to quit)\n""")
 
                     command = input("Pick an operation:")
+                    if (command == "1"):
+                        viewDashboard()
                     
             # Choosing a schedule operation
             else:                
@@ -65,7 +60,123 @@ def memberOperations(command):
                     q (to quit)\n""")
 
                     command = input("Pick an operation:")
-                    
+
+#Member Training Session Registration
+def registerForTrainingSession():
+    """
+    # Registers a member for a training session
+    """
+    id = input("What is the id of the Member")
+    trainerId = input("What is the name of the Trainer ?")
+    sessionDay = input("What day is the session?")
+    sessionStartTime = input("What time does the session start?")
+    sessionEndTime = input("What time does the session end?")
+    # Query to check trainer availability
+    trainerAvailability = """
+    SELECT COUNT(*) 
+    FROM SessionBooking 
+    WHERE TrainerId = %s 
+    AND SessionDay = %s 
+    AND (
+        (StartTime <= %s AND EndTime >= %s) OR 
+        (StartTime <= %s AND EndTime >= %s) OR 
+        (StartTime >= %s AND EndTime <= %s)
+    );
+    """
+    cursr.execute(trainerAvailability, (trainerId, sessionDay, sessionStartTime, sessionEndTime, sessionStartTime, sessionEndTime, sessionStartTime, sessionEndTime))
+    availability_result = cursr.fetchone()
+    if availability_result[0] > 0:
+        # Trainer is not available during the specified session time
+        print("Trainer isn't available during this time, please choose another time.")
+    else:
+        # Trainer is available so will register the member
+        parameters = (sessionDay, sessionStartTime, sessionEndTime, id, trainerId)
+        statement = """INSERT INTO SessionBooking (SessionDay, StartTime, EndTime, MemberID, TrainerId) VALUES (%s, %s, %s, %s, %s);"""
+        cursr.execute(statement, parameters)
+        print("Registration successful!")
+    print("\n")
+
+
+# Member Room Registration
+def registerForRoom():
+    """
+    # Registers a member for a room
+    """
+    bookingDay = input("What day is the room booked? ")
+    startTime = input("What time does the room start? ")
+    endTime = input("What time does the room end? ")
+    id = input("What is the id of the Member? ")
+    adminId = input("What is the id of the Admin Staff? ")
+
+    # Query to check room availability
+    roomAvailability = """
+    SELECT COUNT(*) 
+    FROM RoomBooking 
+    WHERE BookingDay = %s 
+    AND (
+        (StartTime <= %s AND EndTime >= %s) OR 
+        (StartTime <= %s AND EndTime >= %s) OR 
+        (StartTime >= %s AND EndTime <= %s)
+    );
+    """
+    cursr.execute(roomAvailability, (bookingDay, startTime, endTime, startTime, endTime, startTime, endTime))
+    availability_result = cursr.fetchone()
+    if availability_result[0] > 0:
+        # Room is not available during the specified time
+        print("Room isn't availble during this time, please choose another time.")
+    else:
+        # Room is available so will register the member
+        parameters = (bookingDay, startTime, endTime, id, adminId)
+        statement = """INSERT INTO RoomBooking (BookingDay, StartTime, EndTime, MemberID, AdminID) VALUES (%s, %s, %s, %s, %s);"""
+        cursr.execute(statement, parameters)
+        print("Registration successful!")
+
+    print("\n")
+
+# Member Profile Viewing
+def viewMemberProfile():
+    """
+    # Views the profile of the specified Member
+    """
+    id = input("What is the id of the Member")
+    print(id, "'s Profile")
+    parameters = (id,)
+    statement = ("""SELECT * FROM Member WHERE MemberID = %s""")
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
+# Update Profile Info
+def updateProfileInfo():
+    """
+    # Updates profile with provided input
+    """
+    id = input("What is your Member ID?")
+    parameter = input("What parameter you like to change?")
+    value = input("What is the new value of that new parameter?")
+    parameters = (parameter, value, id)
+    statement = """UPDATE Member SET %s = %s WHERE MemberID = %s"""
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
+# Member Dashboard Display
+def viewDashboard():
+    """
+    # Views the dashboard of the specified Member
+    """
+    id = input("What is the id of the Member")
+    print(id, "'s Dashboard")
+    parameters = (id,)
+    statement = ("""SELECT Height, Weight, WeightGoal, WeightChange FROM Member WHERE MemberID = %s""")
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
+
 # All Trainer Operations
 # Schedule Management
 def viewSchedule(name):
@@ -95,19 +206,6 @@ def updateSchedule(name):
         print(row)
     print("\n")
 
-# Member Profile Viewing
-def viewMemberProfile():
-    """
-    # Views the profile of the specified Member
-    """
-    name = input("What is the full name of the Member")
-    print(name, "'s Profile")
-    parameters = (name, )
-    statement = ("""SELECT * FROM Member WHERE FullName = %s""")
-    cursr.execute(statement, parameters)
-    for row in cursr.fetchall():
-        print(row)
-    print("\n")
 
 def trainerOperations(command):
     if (command!= "q"):
