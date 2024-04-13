@@ -4,13 +4,13 @@ import psycopg2
 conct = psycopg2.connect(host="localhost", user="user1", password ="1234", port=5432, dbname="Comp3005Project")
 cursr = conct.cursor()
 
-# Function that does operations
-def viewTable():
+# Update Profile Info
+def updateProfileInfo():
     """
-    #Peforms Operation
+    # Updates profile with provided input
     """
-    print("Trying to print")
-    cursr.execute("""SELECT * FROM administrativestaff""")
+    print("Current profile info")
+    cursr.execute("""SELECT * FROM member""")
     for row in cursr.fetchall():
         print(row)
     print("\n")
