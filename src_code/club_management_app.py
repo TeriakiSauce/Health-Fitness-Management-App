@@ -162,6 +162,33 @@ def manageClasSchedules():
     for row in cursr.fetchall():
         print(row)
     print("\n")
+    
+# Billing Management
+def viewTransactions():
+    """
+    # Views all Transactions
+    """
+    print("All transactions")
+    cursr.execute("""SELECT * FROM Billing""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+def processNewTransaction():
+    """
+    # Add a new Transaction
+    """
+    id = input("What is the ID of the member making the transaction?")
+    amount = input("What is the amount of the transaction?")
+    cardNum = input("What is the card number?")
+    cardType = input("What is the card type?")
+    parameters = (id, amount, cardNum, cardType)
+    
+    statement = """INSERT INTO Billing (MemberID, Amount, CardNumber, CardType) VALUES (%s, %s, %s, %s);"""
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
 
 def adminOperations(command):
     if (command!= "q"):
@@ -216,9 +243,14 @@ def adminOperations(command):
             else:
                 if (command!= "q"):
                     print("""Possible Billing operations are:\n
-                    1. View Billing Info\n
+                    1. View all Transactions\n
                     2. Process new Payment\n
                     q (to quit)\n""")
+                        
+                    if (command == "1"):
+                        viewTransactions()
+                    elif (command == "2"):
+                        processNewTransaction()
 
 # Main App Logic
 def main():         
