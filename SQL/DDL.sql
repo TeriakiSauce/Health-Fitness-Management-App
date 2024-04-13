@@ -23,7 +23,7 @@ CREATE TABLE AdministrativeStaff (
     Email VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE TrainingSession (
+CREATE TABLE SessionBooking (
     SessionID SERIAL PRIMARY KEY,
     SessionDay VARCHAR(255) NOT NULL,
     StartTime VARCHAR(255) NOT NULL,
