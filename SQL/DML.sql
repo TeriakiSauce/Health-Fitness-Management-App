@@ -18,7 +18,6 @@ VALUES ('Bob Jones', 'Tuesday, Wednesday, Thursday', '09:00:00', '17:00:00'),
        ('Emma Watson', 'Monday, Wednesday, Thursday', '08:00:00', '16:00:00'),
        ('Daniel Smith', 'Tuesday, Thursday, Friday', '09:00:00', '17:00:00');
 
-
 -- Insert into AdministrativeStaff Table
 INSERT INTO AdministrativeStaff(FullName, Email)
 VALUES ('Marshall Bean', 'admin1@gmail.com'),
@@ -28,7 +27,6 @@ VALUES ('Marshall Bean', 'admin1@gmail.com'),
        ('Sophia Garcia', 'admin5@gmail.com'),
        ('William Martinez', 'admin6@gmail.com');
 
-
 -- Insert into Sessions Table
 INSERT INTO TrainingSession(MemberID, TrainerID, SessionDay, StartTime, EndTime)
 VALUES ('1', '1', 'Tuesday', '10:00:00', '11:00:00'),
@@ -37,7 +35,6 @@ VALUES ('1', '1', 'Tuesday', '10:00:00', '11:00:00'),
        ('4', '2', 'Thursday', '13:00:00', '14:00:00'),
        ('1', '5', 'Monday', '11:00:00', '12:00:00'),
        ('2', '6', 'Friday', '16:00:00', '17:00:00');
-
 
 -- Insert into RoomBookings Table
 INSERT INTO RoomBooking(RoomID, MemberID, BookingDay, StartTime, EndTime)
@@ -57,7 +54,6 @@ VALUES ('Barbell', 'Excellent', 'Available'),
        ('Resistance Bands', 'Good', 'Available'),
        ('Treadmill', 'Broken', 'Not Available');
 
-
 -- Insert into Classes Table
 INSERT INTO Class(ClassName, ClassDay, StartTime, EndTime)
 VALUES ('Yoga', 'Tuesday', '09:00:00', '10:00:00'),
@@ -67,7 +63,6 @@ VALUES ('Yoga', 'Tuesday', '09:00:00', '10:00:00'),
        ('Boxing', 'Saturday', '10:00:00', '11:00:00'),
        ('CrossFit', 'Sunday', '09:00:00', '10:00:00');
        
-
 -- Insert into Billings Table
 INSERT INTO Billing(MemberID, Amount, CardNumber, CardType)
 VALUES ('1','60', '1234', 'Debit'),
