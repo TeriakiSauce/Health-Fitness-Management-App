@@ -5,7 +5,8 @@ CREATE TABLE Member (
     Phone VARCHAR(20) NOT NULL,
     Height NUMERIC NOT NULL,
     Weight NUMERIC NOT NULL,
-    WeightGoal NUMERIC NOT NULL
+    WeightGoal NUMERIC NOT NULL,
+    WeightChange INTEGER NOT NULL
 );
 
 CREATE TABLE Trainer (
@@ -22,7 +23,7 @@ CREATE TABLE AdministrativeStaff (
     Email VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE TrainingSession (
+CREATE TABLE SessionBooking (
     SessionID SERIAL PRIMARY KEY,
     SessionDay VARCHAR(255) NOT NULL,
     StartTime VARCHAR(255) NOT NULL,
