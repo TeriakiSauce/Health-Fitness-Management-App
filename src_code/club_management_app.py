@@ -86,7 +86,21 @@ def updateSchedule(name):
     for row in cursr.fetchall():
         print(row)
     print("\n")
-        
+
+# Member Profile Viewing
+def viewMemberProfile():
+    """
+    # Views the profile of the specified Member
+    """
+    name = input("What is the full name of the Member")
+    print(name, "'s Profile")
+    parameters = (name, )
+    statement = ("""SELECT * FROM Member WHERE FullName = %s""")
+    cursr.execute(statement, parameters)
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+
 def trainerOperations(command):
     if (command!= "q"):
             print("""Possible Trainer operations are:\n
@@ -115,6 +129,9 @@ def trainerOperations(command):
                     print("""Possible Profile operations are:\n
                     1. View the profile of a member\n
                     q (to quit)\n""")
+                    
+                    if (command == "1"):
+                        viewMemberProfile()
 
 # All Admin Staff Operations
 # Room Management
