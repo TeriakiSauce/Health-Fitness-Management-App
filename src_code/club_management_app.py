@@ -87,11 +87,26 @@ def trainerOperations(command):
 # Room Viewing
 def viewRooms():
     """
-    # Views all availables rooms
+    # Views all rooms
     """
-    print("Current profile info")
-    cursr.execute("""SELECT RoomID FROM RoomBooking
-                WHERE StartTime IS NULL""")
+    print("All Rooms")
+    cursr.execute("""SELECT * FROM RoomBooking""")
+    for row in cursr.fetchall():
+        print(row)
+    print("\n")
+    
+# Room Management
+def manageRooms():
+    """
+    # Edit a room
+    """
+    id = input("Type the ID of the Room you would like to edit")
+    startTime = input("What time would you like to update the room to start?")
+    endTime = input("What time would like to update the room to end?")
+    parameters = (startTime, endTime, id)
+    
+    statement = """UPDATE RoomBooking SET StartTime = %s, EndTime = %s WHERE RoomID = %s"""
+    cursr.execute(statement, parameters)
     for row in cursr.fetchall():
         print(row)
     print("\n")
@@ -110,12 +125,14 @@ def adminOperations(command):
             if (command == "1"):
                 if (command!= "q"):
                     print("""Possible Room Booking operations are:\n
-                    1. View Available Rooms\n
-                    2. Book a new Room\n
+                    1. View all Rooms\n
+                    2. Edit Room Details\n
                     q (to quit)\n""")
                     
                     if (command == "1"):
                         viewRooms()
+                    elif (command == "2"):
+                        manageRooms()
             
             # Choosing an equipment operation
             elif (command == "2"):
