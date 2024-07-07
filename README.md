@@ -1,4 +1,4 @@
-# Comp 3005 Project V2 Group 95
+# Health & Fitness Management App
 #### Summary of Contents
 This repo contains the source code for a Health and Fitness Club Management System that interfaces with a database. <br>
 The UI is through the Command Line Interface which prompts the user for input. Coding was done using Python and creating the database with SQL.
